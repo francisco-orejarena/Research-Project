@@ -110,10 +110,9 @@ knitr::kable(head(lundatafran), format = "html")
 
 #Plots
 
-```{r, plot, message=FALSE, echo=FALSE, width=8}
+```{r, plot, message=FALSE, echo=FALSE, warning=FALSE, fig.width=10}
 lang_tidy_dur %>%
   ggplot(., aes(x = lang, y = contrast, color = stress)) +
-  geom_point() +
   geom_jitter(height = 0.1, width = 0.3) +
   geom_smooth(method = glm, method.args = binomial)
 ```
@@ -122,7 +121,7 @@ lang_tidy_dur %>%
 
 #Plots
 
-```{r, echo=FALSE, message=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10}
 durcont
 ```
 

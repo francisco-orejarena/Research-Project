@@ -4,7 +4,6 @@ head(lundata)
 lundatafran <- lundata %>% 
   select(., -`Pitch = contrastive`)
    
-
 lang_tidy_dur <- lundata %>%
   select(., -`Language name`, -`Language family`, -Pitch, -Intensity, -`Pitch = contrastive`) %>%
   rename(., lang = X1, stress = `Stress system type`, duration = `Duration`, contrast = `Duration = contrastive`)
@@ -22,7 +21,7 @@ lang_tidy_dur %>%
   geom_smooth(method = glm, method.args = binomial)
 
 durcont <- lang_tidy_dur %>%
-  ggplot(., aes(x = contrast, y = duration, color = stress)) +
+  ggplot(., aes(x = duration, y = contrast, color = stress)) +
   geom_point() +
   geom_jitter(height = 0.1, width = 0.3) +
   geom_smooth(method = glm, method.args = binomial)
