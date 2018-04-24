@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Research Project</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Francisco Orejarena" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Research Project
+## ⚔<br/>Data Analysis of the Functional Load Hypothesis
+### Francisco Orejarena
+### 2018/04/24
+
+---
+
+
+
+
+
+
+#What is the Functional Load Hypothesis?
+
+As Anya Lunden so aptly put it, "The functional load hypothesis of Berinstein (1979) put forward the idea that languages which use a suprasegmental property (duration, F0) contrastively will not use it to realise stress." (2017).
+
+---
+
+#Reasoning
+
+Besides my lack of personal data to analysize and interpret, I found that while doing my online presentation that Lunden could've handled her analysis a little better(or so I thought); and while the following presentation is clearly by a chump like me, I think that it at least discusses the problems with a major challenge to a theory such as FLH.
+
+---
+
+**Database parameters**
+
+--
+
+a. Language information
+- Language name
+- Primary family
+- Secondary family
+- ISO 639-3 code
+
+--
+
+b. Stress system information
+- Stress system type
+(single stress, binary stress, dual stress, ternary stress)
+- Primary stress edge (left/right)
+
+--
+
+c. Stress correlate information
+- Duration as reported correlate (yes/no)
+- Pitch as reported correlate (yes/no)
+- Intensity/loudness/energy/spectral tilt as reported correlate (yes/no)
+- Primary correlate, if known
+- Vowel reduction (phonological) in unstressed syllables (yes/no)
+
+--
+
+d. Phonological uses of suprasegmentals
+- Duration used contrastively outside of stress (yes/no)
+- Pitch used contrastively outside of stress (yes/no)
+
+--
+
+e. References: Sources consulted (full bibliographical entries are given below)
+
+---
+
+**My Database Parameters**
+
+--
+
+a. Language information
+- Language name
+- Primary family
+
+--
+
+b. Stress system information
+- Stress system type
+(single stress, binary stress, dual stress, ternary stress)
+
+--
+
+c. Stress correlate information
+- Duration as reported correlate (yes/no)
+- Pitch as reported correlate (yes/no)
+- Intensity/loudness/energy/spectral tilt as reported correlate (yes/no)
+
+--
+
+d. Phonological uses of suprasegmentals
+- Duration used contrastively outside of stress (yes/no)
+
+---
+
+#Tidying the Data
+
+
+```r
+knitr::kable(head(lundatafran), format = "html")
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; X1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Language name &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Language family &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Stress system type &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Duration &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Pitch &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Intensity &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Duration = contrastive &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Aleut &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Eskimo㤼㸶Aleut &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Anejom &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Austronesian &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Apuri昼㸱a &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Arawakan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Arabela &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Zaparoan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Arabic (Ammani-Jordanian) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Semitic &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Arabic (Syrian) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Semitic &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+#Plots
+
+![](Research_Project_Presentation_files/figure-html/plot-1.png)&lt;!-- --&gt;
+
+---
+
+#Plots
+
+![](Research_Project_Presentation_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+**Models**
+
+
+```r
+summary(glm_null)
+```
+
+```
+## 
+## Call:
+## glm(formula = contrast ~ 1, family = binomial(link = "logit"), 
+##     data = lang_tidy_dur)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -1.328  -1.328   1.034   1.034   1.034  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)   0.3463     0.1716   2.018   0.0436 *
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 189.95  on 139  degrees of freedom
+## Residual deviance: 189.95  on 139  degrees of freedom
+## AIC: 191.95
+## 
+## Number of Fisher Scoring iterations: 4
+```
+
+---
+
+
+```r
+summary(glm_dur)
+```
+
+```
+## 
+## Call:
+## glm(formula = contrast ~ duration, family = binomial(link = "logit"), 
+##     data = lang_tidy_dur)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.4473  -1.2500   0.9297   1.1065   1.1065  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)   0.6152     0.2775   2.217   0.0267 *
+## duration     -0.4461     0.3544  -1.259   0.2081  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 189.95  on 139  degrees of freedom
+## Residual deviance: 188.34  on 138  degrees of freedom
+## AIC: 192.34
+## 
+## Number of Fisher Scoring iterations: 4
+```
+
+---
+
+
+```r
+summary(glm_all)
+```
+
+```
+## 
+## Call:
+## glm(formula = contrast ~ duration + intensity + pitch, family = binomial(link = "logit"), 
+##     data = lang_all)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.5173  -1.2942   0.8895   1.0649   1.2550  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)
+## (Intercept)  0.31979    0.50703   0.631    0.528
+## duration    -0.40487    0.38145  -1.061    0.289
+## intensity   -0.09557    0.37359  -0.256    0.798
+## pitch        0.45119    0.38529   1.171    0.242
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 184.96  on 135  degrees of freedom
+## Residual deviance: 181.63  on 132  degrees of freedom
+##   (4 observations deleted due to missingness)
+## AIC: 189.63
+## 
+## Number of Fisher Scoring iterations: 4
+```
+---
+
+#Questions?
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

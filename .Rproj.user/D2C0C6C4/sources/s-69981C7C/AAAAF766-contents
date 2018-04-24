@@ -1,0 +1,149 @@
+---
+title: "Research Project"
+subtitle: "⚔<br/>Data Analysis of the Functional Load Hypothesis"
+author: "Francisco Orejarena"
+date: "2018/04/24"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+```{r, 'libraries', message=FALSE, include=FALSE}
+source("../scripts/libraries.R")
+```
+```{r, 'scripts', message=FALSE, include=FALSE}
+source('../scripts/tidydata.R')
+```
+
+#What is the Functional Load Hypothesis?
+
+As Anya Lunden so aptly put it, "The functional load hypothesis of Berinstein (1979) put forward the idea that languages which use a suprasegmental property (duration, F0) contrastively will not use it to realise stress." (2017).
+
+---
+
+#Reasoning
+
+Besides my lack of personal data to analysize and interpret, I found that while doing my online presentation that Lunden could've handled her analysis a little better(or so I thought); and while the following presentation is clearly by a chump like me, I think that it at least discusses the problems with a major challenge to a theory such as FLH.
+
+---
+
+**Database parameters**
+
+--
+
+a. Language information
+- Language name
+- Primary family
+- Secondary family
+- ISO 639-3 code
+
+--
+
+b. Stress system information
+- Stress system type
+(single stress, binary stress, dual stress, ternary stress)
+- Primary stress edge (left/right)
+
+--
+
+c. Stress correlate information
+- Duration as reported correlate (yes/no)
+- Pitch as reported correlate (yes/no)
+- Intensity/loudness/energy/spectral tilt as reported correlate (yes/no)
+- Primary correlate, if known
+- Vowel reduction (phonological) in unstressed syllables (yes/no)
+
+--
+
+d. Phonological uses of suprasegmentals
+- Duration used contrastively outside of stress (yes/no)
+- Pitch used contrastively outside of stress (yes/no)
+
+--
+
+e. References: Sources consulted (full bibliographical entries are given below)
+
+---
+
+**My Database Parameters**
+
+--
+
+a. Language information
+- Language name
+- Primary family
+
+--
+
+b. Stress system information
+- Stress system type
+(single stress, binary stress, dual stress, ternary stress)
+
+--
+
+c. Stress correlate information
+- Duration as reported correlate (yes/no)
+- Pitch as reported correlate (yes/no)
+- Intensity/loudness/energy/spectral tilt as reported correlate (yes/no)
+
+--
+
+d. Phonological uses of suprasegmentals
+- Duration used contrastively outside of stress (yes/no)
+
+---
+
+#Tidying the Data
+
+```{r}
+knitr::kable(head(lundatafran), format = "html")
+```
+
+---
+
+#Plots
+
+```{r, plot, message=FALSE, echo=FALSE, width=8}
+lang_tidy_dur %>%
+  ggplot(., aes(x = lang, y = contrast, color = stress)) +
+  geom_point() +
+  geom_jitter(height = 0.1, width = 0.3) +
+  geom_smooth(method = glm, method.args = binomial)
+```
+
+---
+
+#Plots
+
+```{r, echo=FALSE, message=FALSE}
+durcont
+```
+
+---
+**Models**
+
+```{r}
+summary(glm_null)
+```
+
+---
+
+```{r}
+summary(glm_dur)
+```
+
+---
+
+```{r}
+summary(glm_all)
+```
+---
+
+#Questions?

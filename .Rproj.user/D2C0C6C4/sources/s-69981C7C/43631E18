@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524096449320.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2910184641",
+    "id" : "43631E18",
+    "lastKnownWriteTime" : 1524575802,
+    "last_content_update" : 1524575802221,
+    "path" : "C:/Users/Francisco/Desktop/Research Project/scripts/tidydata.R",
+    "project_path" : "scripts/tidydata.R",
+    "properties" : {
+        "cursorPosition" : "37,0",
+        "scrollLine" : "4",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

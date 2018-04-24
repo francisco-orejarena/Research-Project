@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524550636023.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "5D3944B9",
+    "lastKnownWriteTime" : 27303364806049904,
+    "last_content_update" : 1524550636023,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "5EB3CB3C",
+        "caption" : "lunden_data_francisco_",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=lunden_data_francisco_&cache_key=5EB3CB3C",
+        "displayedObservations" : "140",
+        "environment" : "",
+        "object" : "lunden_data_francisco_",
+        "preview" : "0",
+        "totalObservations" : "140",
+        "variables" : "9"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
