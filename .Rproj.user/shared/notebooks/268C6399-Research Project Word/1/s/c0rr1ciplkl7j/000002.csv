@@ -1,0 +1,19 @@
+"0","source('../scripts/tidydata.R')"
+"2","Missing column names filled in: 'X1' [1]"
+"2","Parsed with column specification:
+cols(
+  X1 = col_integer(),
+  `Language name` = col_character(),
+  `Language family` = col_character(),
+  `Stress system type` = col_integer(),
+  Duration = col_integer(),
+  Pitch = col_integer(),
+  Intensity = col_integer(),
+  `Duration = contrastive` = col_integer(),
+  `Pitch = contrastive` = col_integer()
+)
+"
+"2","number of columns of result is not a multiple of vector length (arg 2)"
+"2","1 parsing failure.
+row [38;5;246m# A tibble: 1 x 5[39m col     row col   expected  actual    file                                               expected   [3m[38;5;246m<int>[39m[23m [3m[38;5;246m<chr>[39m[23m [3m[38;5;246m<chr>[39m[23m     [3m[38;5;246m<chr>[39m[23m     [3m[38;5;246m<chr>[39m[23m                                              actual [38;5;250m1[39m    16 [31mNA[39m    9 columns 1 columns 'C:/Users/Francisco/Desktop/Research Project/data~ file [38;5;246m# A tibble: 1 x 5[39m
+"

@@ -1,0 +1,2 @@
+"0","# Seed for random number generation"
+"0","set.seed(42)"
